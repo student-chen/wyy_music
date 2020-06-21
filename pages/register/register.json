@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+  	"mew-options": "/components/mew-options/mew-options"
+  },
+  "navigationBarTitleText": "注册/修改密码"
+}

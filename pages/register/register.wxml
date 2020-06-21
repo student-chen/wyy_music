@@ -1,0 +1,15 @@
+<view class="register">
+	<form bindsubmit="handleRegister" class="registerForm">
+        <mew-options class="container" style="width: 670rpx; height: 600rpx; margin-top: 50rpx; margin-left: 40rpx;">
+            <input class="account" maxlength="11" type="digit" placeholder="手机号" placeholder-style="text-align: left;" bindinput="accountInput"/>
+            <view class="line-1"></view>
+            <input class="password" maxlength="16" type="password" placeholder="密码" placeholder-style="text-align: left;" bindinput="passwordInput"/>
+            <view class="line-1"></view>
+            <input class="nickname" maxlength="16" type="text" placeholder="昵称" placeholder-style="text-align: left;" bindinput="nicknameInput"/>
+            <view class="line-1"></view>
+            <input class="captcha" maxlength="6" placeholder-style="text-align: left;" placeholder="短信验证码" bindinput="captchaInput" />
+			<button class="captchaBtn" style="width: 220rpx;" disabled="{{disabled}}" bindtap="handleSendCodes">{{showRemind}}</button>
+        </mew-options>
+        <button form-type="submit" class="registerBtn">注册</button>
+    </form>
+</view>

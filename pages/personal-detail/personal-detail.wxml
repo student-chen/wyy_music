@@ -1,0 +1,119 @@
+<view style="background-image: url('{{personalInfo.background_imageUrl}}'); width: 100%; height: 520rpx;  background-size: 750rpx 520rpx; background-position: no-repeat;">
+	<image src="{{personalInfo.avatarUrl}}" style="width: 110rpx; height: 100rpx; border-radius: 50%; background: var(--spaColor); margin: 120rpx 0 0 40rpx;"/>
+	<view style="font-size: 28rpx; color: #fff; margin: 40rpx 0 10rpx 40rpx;">{{personalInfo.nickname}}</view>
+	<view style="width: 690rpx; margin-left: 30rpx; display: flex; flex-direction: row;" >
+		<view style="width: auto; height: 40rpx; line-height: 40rpx; background: #33cc66; color: #fff; border-radius: 12rpx; text-align: center; margin: 10rpx; font-size: 20rpx; padding: 0 8rpx;" wx:for="{{tags}}" wx:key="*this" wx:if="{{tags}}">{{item}}</view>
+	</view>
+	<view style="display: flex; margin: 20rpx 10rpx 10rpx 40rpx; color: #fff; font-size: 24rpx; justify-content: space-between;">
+		<view style="display: flex;">
+			<view data-id="{{personalInfo.userId}}" catchtap="handlePersonalNoticed">关注: {{personalInfo.notice_number}}</view>
+			<view style="margin-left: 15rpx;"  data-id="{{personalInfo.userId}}" catchtap="handlePersonalFans">粉丝: {{personalInfo.fans_number}}</view>
+		</view>
+		<view style="display: flex; flex-direction: column; margin-top: -90rpx; margin-right: 30rpx; justify-content: center; align-items: center;" wx:if="{{!sameId}}">
+			<view style="font-size: 24rpx; color: #fff;">{{personalInfo.follow_time}}</view>
+			<image src="../../images/pages/{{personalInfo.followed ? 'noticed' : 'unnoticed'}}.png" style="width: 60rpx; height: 60rpx; margin-top: 25rpx; color: #ff0000;" data-follow="{{personalInfo.followed}}" bindtap="handleNotice"/>
+		</view>
+	</view>
+	<view style="display: flex; width: 300rpx; justify-content: space-between; margin-top: 40rpx;">
+		<view style="width: 140rpx; height: 40rpx; line-height: 40rpx; font-size: 24rpx; border-radius: 20rpx; background-color: var(--themeColor); color: #fff; text-align: center; margin-left: 40rpx; font-style: italic;" wx:if="{{personalInfo.level}}">Lv.{{personalInfo.level}}</view>
+		<view style="width: 160rpx; height: 40rpx; line-height: 40rpx; font-size: 24rpx; border-radius: 20rpx; background-color: var(--spaColor); color: #fff; text-align: center; margin-left: 40rpx;"><text style="color: {{personalInfo.gender == '男' ? '#247afc' : '#ff0000'}}; margin-right: 10rpx; font-size: 24rpx;">{{personalInfo.gender == "男" ? "♂" : "♀"}}</text>{{personalInfo.birthday}}后</view>
+	</view>
+</view>
+<view class="navBar">
+	<view class="order-tab {{ currentID == '0' ? 'selected' : ''}}" bindtap="" wx:if="{{personalInfo.artistId == null ? true : false}}">主页</view>
+	<view class="order-tab {{ currentID == '1' ? 'selected' : ''}}" bindtap="handleSingerSongs" wx:if="{{personalInfo.artistId !== null ? true : false}}">歌曲</view>
+    <view class="order-tab {{ currentID == '2' ? 'selected' : ''}}" bindtap="handleAlbum" wx:if="{{personalInfo.artistId !== null ? true : false}}">专辑 <text style="font-size: 22rpx; margin-top: 5rpx;">{{albumInfo.albumTotal}}</text></view>
+    <view class="order-tab {{ currentID == '3' ? 'selected' : ''}}" bindtap="handleDynamic">动态 <text style="font-size: 22rpx; margin-top: 5rpx;" wx:if="{{dynamicInfo.length > 0}}">{{dynamicInfo.length > 99 ? '99+' : dynamicInfo.length}}</text></view>
+    <view class="order-tab {{ currentID == '4' ? 'selected' : ''}}" bindtap="" wx:if="{{personalInfo.artistId !== null ? true : false}}">视频 200</view>
+    <view class="order-tab {{ currentID == '5' ? 'selected' : ''}}" bindtap="" wx:if="{{personalInfo.artistId !== null ? true : false}}">关于TA</view>
+</view>
+
+<!-- 歌手单曲 -->
+<view style="display: flex; flex-direction: row; width: 750rpx; height: 100rpx; align-items: center; margin-top: 20rpx;" wx:for="{{singerSongs.songs}}" wx:key="*this" wx:if="{{curretnType == 'singer'}}">
+	<view style="width: 100rpx; height: 100rpx; line-height: 100rpx; text-align: center; font-size: 28rpx; color: #999;">{{item.songId}}</view>
+	<view style="width: 570rpx;margin-left: 20rpx;">
+		<view style="color: #000; font-size: 24rpx;" class="one-lines">{{item.songName}}<text style="color: #999; margin-left: 6rpx;" wx:if="{{item.originalSinger}}">({{item.originalSinger}})</text></view>
+		<view style="display: flex; margin-top: 10rpx;">
+			<!-- <view style="width: 50rpx; height: 28rpx; line-height: 22rpx; font-size: 18rpx; color: var(--themeColor); border: 2rpx solid var(--themeColor); margin-right: 10rpx; text-align: center;">独家</view> -->
+			<view style="width: 50rpx; height: 28rpx; line-height: 22rpx; font-size: 18rpx; color: var(--themeColor); border: 2rpx solid var(--themeColor); margin-right: 10rpx; text-align: center;">SQ</view>
+			<view class="one-lines" style="color: #999; font-size: 20rpx;"><text wx:for="{{item.songCreator}}" wx:for-item="songCreator" wx:key="id">{{songCreator.name}}<text wx:if="{{item.songCreator.length > 1}}">/</text></text> - {{item.songProvenance}}</view>
+		</view>
+	</view>
+	<view style="width: 50rpx; height: 100rpx; font-size: 40rpx; font-weight: bold; text-align: center; line-height: 100rpx; color: #999;">⋮</view>
+</view>
+
+<!-- 歌手专辑 -->
+<view wx:if="{{curretnType == 'album'}}">
+	<view style="display: flex; margin: 10rpx 20rpx 0 30rpx; width: 690rpx; height: 100rpx; border-radius: 12rpx; align-items: center;" wx:for="{{albumInfo.albumDetail}}" wx:key="id">
+		<image src="{{item.albumImage}}" style="width: 80rpx; height: 80rpx;  border-radius: 12rpx; margin-left: 10rpx;" />
+		<view style="margin-left: 50rpx;">
+			<view class="one-lines" style="font-size: 24rpx; color: #000;">{{item.albumName}}<text style="font-size: 22rpx; color: #999; margin-left: 10rpx;" wx:if="{{item.albumAlias}}">({{item.albumAlias}})</text></view>
+			<view style="font-size: 22rpx; color: #999; margin-top: 10rpx;">{{item.albumDateTime}}<text style="margin-left: 10rpx;">歌曲{{item.albumSize}}</text></view>
+		</view>
+	</view>
+</view>
+
+<!-- 无动态 -->
+<view wx:if="{{curretnType == 'dynamic' && dynamicInfo == ''}}" style="width: 750rpx; height: 60rpx; line-height: 60rpx; margin-top: 80rpx; text-align: center; color: #999;">TA暂时还没有动态~</view>
+
+<!-- 动态 -->
+<view style="width: 750rpx; margin-top: 20rpx; padding-bottom: 20rpx; border-bottom: 2rpx solid #999;" wx:for="{{dynamicInfo}}" wx:key="id" wx:if="{{curretnType == 'dynamic'}}">
+	<view style="display: flex; margin-left: 30rpx;">
+		<image src="{{item.avatarUrl}}" style="width: 110rpx; height: 100rpx; border-radius: 50%;"/>
+		<view style="width: 750rpx; margin-top: 10rpx; margin-left: 20rpx;">
+			<view style="display: flex;  align-items: center;">
+				<view style="color: var(--spaColor); font-size: 24rpx;">{{item.nickname}}</view>
+				<image src="../../images/pages/{{item.vipType.redVipAnnualCount == '1' ?  'vip_year' : 'vip'}}.png" style="width: {{item.vipType.redVipAnnualCount == '1' ? '80' : '50'}}rpx; height: 30rpx; margin-left: 10rpx;"/>
+				<view style="font-size: 24rpx; color: #999; margin-left: 10rpx;">{{item.resourceTitle[0] ? item.resourceTitle[0] + ":" : "分享单曲："}}</view>
+			</view>
+			<view style="margin-top: 12rpx; font-size: 22rpx; color: #999;">{{item.date_time}}</view>
+		</view>
+		</view>
+	<view style="margin-left: 140rpx; font-size: 24rpx; color: #000; margin-right: 20rpx;">
+		<!-- <text>{{item.dynamicContent_link[0]}}</text><text style="color: var(--spaColor);" data-navigate="{{item.dynamicContent_link[1]}}" bindtap="handleNavigation" wx:if="{{item.dynamicContent_link}}">>>#网页链接</text> -->
+		<text>{{item.dynamicContent.msg}}</text>
+	</view>
+	<image src="{{item.dynamicContent.album.picUrl || photo.imageUrl}}" mode="widthFix" style="width: 300rpx; height: 300rpx; border-radius: 12rpx; margin-top: 20rpx; margin-left: 140rpx;" wx:for="{{item.dynamicPics}}" wx:for-item="photo" wx:if="{{item.dynamicContent.album || item.dynamicPics}}" wx:key="key" data-src_1="{{photo.imageUrl}}" data-src_2="{{item.dynamicContent.album.picUrl}}" data-list="{{item.dynamicPics}}" data-url="{{item.dynamicContent.album.picUrl}}" bindtap="handlePreviewImage"/>
+	<view style="display: flex; margin: 10rpx 20rpx 0 140rpx; width: 590rpx; height: 100rpx; background-color: #C0C0C0; border-radius: 12rpx; align-items: center;" wx:if="{{item.dynamicContent.album || item.dynamicContent.song || item.dynamicContent.playlist || item.dynamicContent.program || item.dynamicContent.djRadio}}">
+		<!-- 专辑 -->
+		<image src="{{item.dynamicContent.album.picUrl}}" style="width: 80rpx; height: 80rpx;  border-radius: 12rpx; margin-left: 10rpx;" wx:if="{{item.dynamicContent.album}}"/>
+		<!-- 单曲 -->
+		<image src="{{item.dynamicContent.song.album.picUrl}}" style="width: 80rpx; height: 80rpx;  border-radius: 12rpx; margin-left: 10rpx;" wx:if="{{item.dynamicContent.song}}"/>
+		<!--  -->
+		<image src="{{item.dynamicContent.playlist.coverImgUrl}}" style="width: 80rpx; height: 80rpx;  border-radius: 12rpx; margin-left: 10rpx;" wx:if="{{item.dynamicContent.playlist}}"/>
+		<!-- 电台 -->
+		<image src="{{item.dynamicContent.program.coverUrl}}" style="width: 80rpx; height: 80rpx;  border-radius: 12rpx; margin-left: 10rpx;" wx:if="{{item.dynamicContent.program}}"/>
+		<!-- DJ -->
+		<image src="{{item.dynamicContent.djRadio.picUrl}}" style="width: 80rpx; height: 80rpx;  border-radius: 12rpx; margin-left: 10rpx;" wx:if="{{item.dynamicContent.djRadio}}"/>
+		<!-- <view style="width: 590rpx; height: calc(9 * 590rpx / 16);" wx:if="{{item.dynamicContent.video}}">
+			<video style="width: 590rpx; height: calc(9 * 590rpx / 16); background-color: #fff; position: relative; margin-left: 140rpx; margin-top: 20rpx;" src="{{videoUrl}}">
+				 <cover-view style="">
+					<cover-image style="width: 590rpx; height: calc(9 * 590rpx / 16);" bindtap="handlePlayVideo" data-id="item.dynamicContent.video.videoId" src="{{item.dynamicContent.video.coverUrl}}" />
+				</cover-view>
+			</video>
+		</view> -->
+		<view style="margin-left: 10rpx;">
+			<view style="font-size: 24rpx; color: #000;" wx:if="{{item.dynamicContent.album}}">{{item.dynamicContent.album.name}}</view>
+			<view style="font-size: 24rpx; color: #000;" wx:if="{{item.dynamicContent.song}}">{{item.dynamicContent.song.name}}</view>
+			<view style="font-size: 24rpx; color: #000;" wx:if="{{item.dynamicContent.program}}">{{item.dynamicContent.program.name}}</view>
+			<view style="font-size: 24rpx; color: #000;" wx:if="{{item.dynamicContent.djRadio}}}">{{item.dynamicContent.djRadio.name}}</view>
+			<view style="font-size: 24rpx; color: #000;" wx:if="{{item.dynamicContent.playlist}}}">{{item.dynamicContent.playlist.name}}</view>
+
+			<view style="font-size: 22rpx; color: #999;" wx:if="{{item.dynamicContent.album}}">{{item.dynamicContent.album.artist.name}}</view>
+			<view style="font-size: 22rpx; color: #999;" wx:if="{{item.dynamicContent.song}}">{{item.dynamicContent.song.artists[0].name}}</view>
+			<view style="font-size: 22rpx; color: #999;" wx:if="{{item.dynamicContent.program}}">by {{item.dynamicContent.program.radio.name}}}</view>
+			<view style="font-size: 22rpx; color: #999;" wx:if="{{item.dynamicContent.djRadio}}">by {{item.nickname}}</view>
+			<view style="font-size: 22rpx; color: #999;" wx:if="{{item.dynamicContent.playlist}}">by {{item.dynamicContent.playlist.creator.nickname}}</view>
+		</view>
+	</view>
+	<view style="width: 220rpx; height: 50rpx; line-height: 50rpx; color: var(--spaColor); font-size: 22rpx; background-color: #C0C0C0; margin-left: 140rpx; margin-top: 20rpx; border-radius: 12rpx; text-align: center;" wx:if="{{item.tailMark}}">{{item.tailMark}}</view>
+	<view style="width: 590rpx; height: 60rpx; line-height: 60rpx; display: flex; flex-direction: row; justify-content: space-between; margin-left: 140rpx;">
+		<view class="sameStyle">转发：{{item.insiteForwardCount}}</view>
+		<view class="sameStyle">评论：{{item.commentCount}}</view>
+		<view class="sameStyle">点赞：{{item.likedCount}}</view>
+	</view>
+</view>
+
+<!-- 歌手MV -->
+
+<!-- 关于TA -->

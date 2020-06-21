@@ -1,0 +1,69 @@
+page {
+	background-color: var(--themeColor);
+}
+
+.registerForm {
+	width: 100%;
+	height: 100%
+}
+
+input.account, input.nickname {
+    margin-left: 60rpx;
+    margin-top: 60rpx;
+    font-size: 36rpx;
+    color: #333;
+    text-align: left;
+}
+
+input.captcha {
+    width: 190rpx;
+    margin-left: 60rpx;
+    margin-top: 60rpx;
+    font-size: 36rpx;
+    color: #333;
+    text-align: left;
+}
+
+input.password {
+    margin-left: 60rpx;
+    margin-top: 50rpx;
+    font-size: 36rpx;
+    color: #333;
+    text-align: left;
+    margin-bottom: 20rpx;
+}
+
+.line-1{
+    width: 670rpx; 
+    height: 2rpx; 
+    background: #fafafa; 
+    margin-top: 30rpx;
+}
+
+.registerBtn {
+    height: 110rpx;
+    background: #ff0000; 
+    border-radius: 12rpx;
+    text-align: center; 
+    margin-left: 40rpx;
+    line-height: 110rpx;
+    color: #ff0000;
+    margin-top: 60rpx;
+    padding: 0;
+    background-color: #ffffff; 
+}
+
+.captchaBtn {
+    width: 220rpx; 
+    height: 56rpx; 
+    border-radius: 12rpx; 
+    border: 2rpx solid #FD6003; 
+    position: absolute; 
+    top: 480rpx; 
+    right: 30rpx; 
+    color: #FD6003; 
+    text-align: center; 
+    line-height: 24rpx; 
+    background: #fff; 
+    font-size: 24rpx;
+}

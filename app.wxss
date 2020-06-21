@@ -1,0 +1,37 @@
+/* 初始化标签样式 */
+page, view, text, swiper, swiper-item, image, navigator{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+page {
+	--themeColor: #ff0000;
+	font-size: 32rpx;
+	--spaColor: #00ADFF;
+}
+
+image {
+	width: 100%;
+}
+
+
+.two-lines {
+	display: -webkit-box; 
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	word-wrap: break-word; 
+	white-space: normal !important; 
+	-webkit-line-clamp: 2; 
+	-webkit-box-orient: vertical;
+}
+
+.one-lines {
+	display: -webkit-box; 
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	word-wrap: break-word; 
+	white-space: normal !important; 
+	-webkit-line-clamp: 1; 
+	-webkit-box-orient: vertical;
+}

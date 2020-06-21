@@ -1,0 +1,44 @@
+.myVideo{ 
+  width:100%;
+  height: calc(9 * 750rpx / 16);
+  background-color: #fff;
+}
+.controls{
+  position:absolute;
+  z-index:1; 
+  background-color: #fff;    
+  height: calc(9 * 750rpx / 16); 
+  margin-top:-430rpx;
+}
+.play{ 
+    position:absolute;
+    left:50%;
+    margin-top:-300rpx;
+    margin-left:-80rpx;    
+}
+.title{
+  position:absolute;
+  white-space: normal;
+   width:700rpx;
+   margin-left:15px;
+   margin-right:30px;
+  margin-top:-410rpx;
+}
+.video{
+  margin-top:15px;
+}
+.avatar {
+  position:absolute;
+  display: block;
+  width: 56rpx;
+  height: 56rpx;
+  margin-top: 5rpx;
+  margin-left: 30rpx;
+  border-radius: 50%;
+}
+#name{
+float: left;
+  font-size:15px;
+  margin-left:50px;
+  margin-top:3px;
+}

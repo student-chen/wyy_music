@@ -1,0 +1,34 @@
+<view class="index">
+	<swiper previous-margin="40rpx" next-margin="20rpx"
+            autoplay="true" circular="true"
+            indicator-dots="{{banner.length > 1 ? true : false}}" indicator-active-color="#ff0000" indicator-color="#fff"
+            style="width: 750rpx; height: 270rpx; margin-top: 10rpx;">
+		<swiper-item wx:for="{{banner}}" wx:key="id" bindtap="smartOpen" data-navigation="{{item.navigation}}">
+            <image src="{{item.image}}" style="height: 270rpx; width: 670rpx; border-radius: 12rpx;"/>
+			<view class="imgeType">{{item.type}}</view>
+        </swiper-item>
+    </swiper>
+
+    <view class="category">
+		<view class="category_list" bindtap="handlePlayList">
+			<image class="category_list_image" src="../../images/pages/gedan.png"/>
+			<view class="category_list_title">歌单</view>
+		</view>
+		<view class="category_list" >
+			<image class="category_list_image" src="../../images/pages/paihangbang.png"/>
+			<view class="category_list_title">排行榜</view>
+		</view>
+		<view class="category_list">
+			<image class="category_list_image" src="../../images/pages/diantai.png"/>
+			<view class="category_list_title">电台</view>
+		</view>
+		<view class="category_list">
+			<image class="category_list_image" src="../../images/pages/live_icon.png"/>
+			<view class="category_list_title">直播</view>
+		</view>
+		<view class="category_list">
+			<image class="category_list_image" src="../../images/pages/calendar.png"/>
+			<view class="category_list_title">每日推荐</view>
+		</view>
+    </view>
+</view>

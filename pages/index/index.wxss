@@ -1,0 +1,47 @@
+.imgeType {
+	width: 120rpx;
+	height: 40rpx;
+	border-top-left-radius: 12rpx;
+	border-bottom-right-radius: 12rpx;
+	background: #ff0000;
+	position: absolute;
+	bottom: 0;
+	right: 20rpx;
+	text-align: center;
+	color: #fff;
+	font-size: 24rpx;
+	line-height: 40rpx;
+
+}
+
+.category {
+	width: 690rpx; 
+	height: 120rpx; 
+	display: flex; 
+	margin-top: 20rpx; 
+	margin-left: 30rpx;
+	flex-shrink: 1; 
+	flex-grow: 1; 
+	justify-content: space-around;
+}
+
+.category  .category_list {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.category  .category_list .category_list_image {
+	width: 60rpx;
+	height: 60rpx;
+	background-color: #ffffff;
+}
+
+.category  .category_list .category_list_title {
+	width: 120rpx;
+	text-align: center;
+	color: #000000;
+	font-size: 24rpx;
+	margin-top: 10rpx;
+}

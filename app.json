@@ -1,0 +1,60 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/find/find",
+    "pages/video/video",
+    "pages/mime/mime",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/playList/playList",
+    "pages/playList-detail/playList-detail",
+    "pages/myMessage/myMessage",
+    "pages/myNotice/myNotice",
+    "pages/personal-detail/personal-detail",
+    "pages/personalNotice/personalNotice",
+    "pages/playSong/playSong",
+    "pages/playVideo/playVideo",
+    "pages/forward/forward"
+  ],
+  "window":{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff0000",
+    "navigationBarTitleText": "网易云音乐",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#ff0000",
+    "backgroundColor": "#fafafa",
+    "position": "bottom",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+		    "iconPath": "images/index.png",
+		    "selectedIconPath": "images/index-on.png"
+      },
+      {
+        "pagePath": "pages/find/find",
+        "text": "发现",
+		    "iconPath": "images/find.png",
+		    "selectedIconPath": "images/find-on.png"
+      },
+      {
+        "pagePath": "pages/video/video",
+        "text": "视频",
+		    "iconPath": "images/video.png",
+		    "selectedIconPath": "images/video-on.png"
+      },
+      {
+        "pagePath": "pages/mime/mime",
+        "text": "我的",
+		    "iconPath": "images/mime.png",
+		    "selectedIconPath": "images/mime-on.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

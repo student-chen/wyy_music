@@ -1,0 +1,50 @@
+<view>
+  <view  class="video">
+    <video id="myVideo1" class="myVideo"  src="http://video.pearvideo.com/mp4/adshort/20181117/cont-1477753-13248875_adpkg-ad_hd.mp4" custom-cache="{{false}}" >
+    </video>
+    <view style="display: {{ index == 1 ? 'none' : 'block' }};" id="1">
+    <cover-view class="controls" id="controls" >
+    <cover-image src="http://image2.pearvideo.com/cont/20181117/cont-1477753-11703578.png" />
+    </cover-view>
+    <cover-view class="title" style="z-index:200;color:#FFF;font-size:15px;">CNN起诉川普政府案宣判，CNN获胜CNN起诉川普政府案宣判，CNN获胜</cover-view>
+    <cover-view class="play" style="z-index:200;">
+    <cover-image bindtap="bindplay" data-id="1" src="../../img/play.png" style="width:160rpx;"/>
+    </cover-view>
+    </view>
+    <view class="info"><image src="http://image.pearvideo.com/node/35-10030502-logo.jpg" class="avatar"  ></image><span id="name">看看新闻</span></view>
+</view>
+<view style="clear:both"></view>
+
+<view  class="video">
+    <video id="myVideo2" class="myVideo"  src="http://video.pearvideo.com/mp4/adshort/20181116/cont-1477146-13247738_adpkg-ad_hd.mp4" custom-cache="{{false}}">
+    </video>
+    <view style="display: {{ index == 2 ? 'none' : 'block' }};">
+    <cover-view class="controls" >
+    <cover-image src="http://image.pearvideo.com/cont/20181116/cont-1477146-11703021.jpeg" />
+    </cover-view>
+    <cover-view class="title" style="z-index:200;color:#FFF;font-size:15px;">靓声界男神陈奕迅英音读《小王子》</cover-view>
+    <cover-view class="play" style="z-index:200;">
+    <cover-image bindtap="bindplay" data-id="2" src="../../img/play3.png" style="width:140rpx;" />
+    </cover-view>
+    </view>
+<view class="info"><image src="http://image.pearvideo.com/node/19-10027896-logo.jpg" class="avatar"  ></image><span id="name">眼镜儿</span></view>
+</view>
+<view style="clear:both"></view>
+
+
+<view  class="video">
+    <video id="myVideo3" class="myVideo"  src="http://video.pearvideo.com/mp4/short/20181118/cont-1478240-13253290-hd.mp4" custom-cache="{{false}}">
+    </video>
+    <view style="display: {{ index == 3 ? 'none' : 'block' }};">
+    <cover-view class="controls" >
+    <cover-image src="http://image1.pearvideo.com/cont/20181118/cont-1478240-11705317.png" />
+    </cover-view>
+    <cover-view class="title" style="z-index:200;color:#FFF;font-size:15px;">设计赛评委：重庆是生机勃勃的城市</cover-view>
+    <cover-view class="play" style="z-index:200;">
+    <cover-image bindtap="bindplay" data-id="3" src="http://image2.pearvideo.com/cont/20181117/cont-1477753-11703578.png" style="width:160rpx;" />
+    </cover-view>
+    </view>    
+<view class="info"><image src="http://image.pearvideo.com/node/1548-10523493-logo.png" class="avatar"  ></image><span id="name">梨重庆</span></view>
+</view>
+<view style="clear:both"></view>
+</view>

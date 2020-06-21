@@ -1,0 +1,38 @@
+<view class="navBar">
+	<view class="order-tab {{ currentID == '1' ? 'selected' : ''}}" bindtap="handlePersonalNoticed">关注</view>
+    <view class="order-tab {{ currentID == '2' ? 'selected' : ''}}" bindtap="handlePersonalFans">粉丝</view>
+</view>
+
+<!-- 有关注 -->
+<view style="width: 690rpx; display: flex; margin: 10rpx 0 10rpx 40rpx; " wx:for="{{myNoticInfo}}" wx:key="*this" wx:if="{{currentType == 'notice'}}" data-id="{{item.id}}" bindtap="handlePersonalDetail">
+	<image src="{{item.avatarUrl}}" style="width: 100rpx; height: 100rpx; border-radius: 50%; margin: 10rpx 0;"/>
+	<view style="width: 540rpx; height: 120rpx; display: flex; flex-direction: column; margin-left: 30rpx; margin-top: 10rpx; position: relative;">
+		<view style="display: flex;">
+			<view style="font-size: 28rpx; color: #000; text-align: left; margin-top: {{item.signature ? '5' : '20'}}rpx;">{{item.nickname}}</view>
+			<image src="../../images/pages/{{item.vipTpye.redVipAnnualCount == '1' ?  'vip_year' : 'vip'}}.png" style="margin-left: 10rpx; margin-top: {{item.signature ? '10' : '24'}}rpx; width: {{item.vipTpye.redVipAnnualCount == '1' ? '80' : '50'}}rpx; height: 30rpx;" wx:if="{{item.vipTpye}}"/>
+			<view style="width: 30rpx; height: 30rpx; color: {{item.gender == '男' ? '#00ADFF' : '#ff0000'}}; font-size: 30rpx; font-weight: bold; margin-top: {{item.signature ? '5' : '20'}}rpx; margin-left: 10rpx;">{{item.gender == "男" ? "♂" : "♀"}}</view>
+		</view>
+		<view class="one-lines" style="text-align: left; margin-top: 10rpx; font-size: 26rpx; color: #999;" wx:if="{{item.signature}}">{{item.signature}}</view>
+	</view>
+	<view style="width: 50rpx; height: 100rpx; font-size: 40rpx; font-weight: bold; text-align: right; line-height: 100rpx; color: #999;" data-id="{{item.id}}" catchtap="handleUnsubscribe">⋮</view>
+</view>
+
+<!-- 有粉丝 -->
+<view style="width: 690rpx; display: flex; margin: 10rpx 0 10rpx 40rpx; " wx:for="{{myFansInfo}}" wx:key="*this" wx:if="{{currentType == 'fan'}}" data-id="{{item.id}}" bindtap="handlePersonalDetail">
+	<image src="{{item.avatarUrl}}" style="width: 100rpx; height: 100rpx; border-radius: 50%; margin: 10rpx 0;"/>
+	<view style="width: 490rpx; height: 120rpx; display: flex; flex-direction: column; margin-left: 30rpx; margin-top: 10rpx; position: relative;">
+		<view style="display: flex;">
+			<view style="font-size: 28rpx; color: #000; text-align: left; margin-top: {{item.signature ? '5' : '20'}}rpx;">{{item.nickname}}</view>
+			<!-- <image src="../../images/pages/{{item.vipTpye.redVipAnnualCount == '1' ?  'vip_year' : 'vip'}}.png" style="margin-left: 10rpx; margin-top: {{item.signature ? '10' : '24'}}rpx; width: {{item.vipTpye.redVipAnnualCount == '1' ? '80' : '50'}}rpx; height: 30rpx;" wx:if="{{item.vipTpye}}"/> -->
+			<view style="width: 30rpx; height: 30rpx; color: {{item.gender == '男' ? '#00ADFF' : '#ff0000'}}; font-size: 30rpx; font-weight: bold; margin-top: 20rpx; margin-left: 10rpx;">{{item.gender == "男" ? "♂" : "♀"}}</view>
+		</view>
+		<!-- <view class="one-lines" style="text-align: left; margin-top: 10rpx; font-size: 26rpx; color: #999;" wx:if="{{item.signature}}">{{item.signature}}</view> -->
+	</view>
+	<view style="width: 120rpx; height: 46rpx; font-size: 22rpx; text-align: center; line-height: 46rpx; color: {{item.followed === '已关注' ? '#999' : '#ff0000'}}; border-radius: 40rpx; border: solid 2rpx {{item.followed === '已关注' ? '#999' : '#ff0000'}}; margin-top: 30rpx;" data-id="{{item.id}}" data-name="{{item.followed}}" catchtap="handleNoticeStatus"><text wx:if="{{item.followed === '已关注'}}">✓</text> {{item.followed}}</view>
+</view>
+
+<!-- 无关注 -->
+<view wx:if="{{currentType == 'notice' && myNoticInfo == ''}}" style="width: 750rpx; height: 60rpx; line-height: 60rpx; margin-top: 80rpx; text-align: center; color: #999;">TA还未关注任何人哦~</view>
+
+<!-- 无粉丝 -->
+<view wx:if="{{currentType == 'fan' && myFansInfo == ''}}" style="width: 750rpx; height: 60rpx; line-height: 60rpx; margin-top: 80rpx; text-align: center; color: #999;">TA暂无粉丝哦~</view>

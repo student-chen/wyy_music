@@ -1,0 +1,40 @@
+<view wx:if="{{!category}}">
+	<view class="navBar">
+		<view class="order-tab {{ currentID == '1' ? 'selected' : ''}}" bindtap="handlePlayList">推荐</view>
+	    <view class="order-tab {{ currentID == '2' ? 'selected' : ''}}" bindtap="handleHighQuality">精品</view>
+	    <view class="order-tab {{ currentID == '3' ? 'selected' : ''}}" data-index="0" bindtap="handleCategoryPlayList">华语</view>
+	    <view class="order-tab {{ currentID == '4' ? 'selected' : ''}}" data-index="1" bindtap="handleCategoryPlayList">轻音乐</view>
+	    <view class="order-tab {{ currentID == '5' ? 'selected' : ''}}" data-index="2" bindtap="handleCategoryPlayList">民谣</view>
+	</view>
+	<view wx:if="{{currentID == '2'}}" style="width: 690rpx; height: 60rpx; line-height: 60rpx; margin: 0 30rpx; display: flex; justify-content: space-between;">
+		<view style="font-size: 28rpx; font-weight: bold; color: #000;text-align: left; margin-left: 10rpx;">{{currentName}}</view>
+		<view style="display: flex; width: 100rpx; border-radius: 40rpx; border: 2rpx solid #999; height: 50rpx; line-height: 50rpx;" bindtap="handleCategoryList">
+			<image src="../../images/pages/choose.png" style="width: 20rpx; height: 20rpx; margin-left: 10rpx; margin-top: 16rpx;"/>
+			<view style="font-size: 24rpx; color: #666; text-align: right; margin-left: 5rpx;">筛选</view>
+		</view>
+	</view>
+	<view style="display: flex; flex-direction: row; width: 690rpx; flex-wrap: wrap; margin: {{currentID == '2' ? '-23rpx': '0'}} 46rpx; ">
+		<view style="width: 200rpx; display: flex; flex-direction: column; justify-content: space-between; margin-right: 30rpx;" wx:for="{{playList}}" wx:if="{{ playList != '' ? true : false }}" wx:key="*this" data-id="{{item.id}}" bindtap="handlePlayListDetail">
+			<view style="width: 40rpx; height: 40rpx; border-bottom-right-radius: 100%; background-color: var(--themeColor);  position: relative; top: 40rpx; left: 0;" wx:if="{{currentID == '2'}}">
+				<image src="../../images/pages/guanjun.png" style="position: absolute; top: 0; left: 0; width: 30rpx; height: 30rpx;"/>
+			</view>
+
+			<view class='background_image' style="background-image: url('{{item.image_url}}');"></view>
+
+			<view class='two-lines' style="margin-bottom: {{currentID == '2' ? '0': '40'}}rpx;">{{item.title}}</view>
+		</view>
+		<view wx:if="{{playList == '' ? true : false}}" style='width: 750rpx; height: 60rpx; line-height: 60rpx; text-align: center; margin-top: 60rpx; color: #999;'>暂无数据~</view>
+	</view>
+</view>
+
+<view style="width:  750rpx; height: 100%; display: block;" wx:if="{{category}}">
+
+	<view style='width: auto; height: 60rpx; margin: 20rpx 0 0 40rpx; color: #000; font-size: 30rpx;'>选择你喜欢的分类</view>
+	<view class="category_common {{ currentName == allList.name ? 'selected' : ''}}" bindtap='handleCategoryListDetail' data-name='{{allList.name}}'>{{allList.name}}</view>
+	<view style="display: flex; flex-wrap: wrap; justify-content: space-between; width: 690rpx; margin-left: 30rpx;">
+		<view class="category_common_1 {{ currentName == item.name ? 'selected' : ''}}" wx:for="{{categoryList}}" data-name ="{{item.name}}" bindtap="handleCategoryListDetail">{{item.name}}</view>
+	</view>
+
+	<view class='confirmBtn' catchtap="handleConfirmCategoryDetail">确定</view>
+	
+</view>

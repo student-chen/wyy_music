@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "mew-overlay": "/components/mew-overlay/mew-overlay",
+        "mew-options": "/components/mew-options/mew-options"
+    },
+    "navigationBarTitleText": "登录"
+}

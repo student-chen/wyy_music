@@ -1,0 +1,22 @@
+:host {
+    position: fixed;
+    left: 155rpx;
+    width: 440rpx;
+    background-color: #fff;
+    top: 50%;
+    min-height: var(--overlay-height, 400rpx);
+    margin-top: calc(var(--overlay-height, 400rpx) / -2);
+    z-index: 9999;
+    box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.15);
+    transform: translateY(400rpx);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    text-align: center;
+}
+
+:host(.visible) {
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+}

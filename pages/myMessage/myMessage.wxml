@@ -1,0 +1,84 @@
+<view class="navBar">
+	<view class="order-tab {{ currentID == '1' ? 'selected' : ''}}" bindtap="handlePrivateLetters">私信<text style="color: #ff0000; font-size: 24rpx; padding-left: 10rpx;" wx:if="{{newMsgCount != '0'}}">{{newMsgCount}}</text></view>
+    <view class="order-tab {{ currentID == '2' ? 'selected' : ''}}" bindtap="handleDiscuss">评论</view>
+    <view class="order-tab {{ currentID == '3' ? 'selected' : ''}}" bindtap="handleAite">@我</view>
+    <view class="order-tab {{ currentID == '4' ? 'selected' : ''}}" bindtap="handleComment">通知</view>
+</view>
+
+<!-- 有私信 -->
+<view style="width: 750rpx;" wx:if="{{personal}}">
+	<view style="display: flex; position: relative;" wx:for="{{messageInfo}}" wx:key="*this" >
+		<!-- <image src="" style="width: 40rpx; height: 40rpx; border-radius: 50%; background-color: var(--themeColor); position: absolute;top: 85rpx; left: 85rpx;"/> -->
+		<image src="{{item.avatarUrl}}" style="width: 100rpx; height: 100rpx; border-radius: 50%; margin: 20rpx;" data-id="{{item.id}}" catchtap="handlePersonalDetail"/>
+		<view style="border-bottom: 2rpx solid #f5f5f5; padding-top: 30rpx; height: 140rpx; width: 610rpx;">
+			<view style='display: flex; justify-content: space-between; '>
+				<view style="font-size: 28rpx; margin-left: 20rpx;">{{item.nickname}}</view>
+				<view style="font-size: 22rpx; margin-right: 50rpx; color: #999;">{{item.data_time}}</view>
+			</view>
+			<view class="one-lines" style="font-size: 24rpx; margin-top: 10rpx; margin-left: 20rpx; width: 550rpx; color: #999;">
+				<text>{{type[item.lastMsg.type]}}: 「 {{item.lastMsg.msg}} 」</text>
+			</view>
+		</view>
+	</view>
+</view>
+
+<!-- 无私信 -->
+<view wx:if="{{personal && messageInfo == ''}}" style="width: 750rpx; height: 60rpx; line-height: 60rpx; margin-top: 80rpx; text-align: center; color: #999;">暂时还没有收到私信~</view>
+
+<!-- 通知 -->
+<view style="width: 750rpx;" wx:if="{{comment}}">
+	<view style="display: flex; position: relative;" wx:for="{{commentInfo}}" wx:key="*this">
+		<image src="{{item.commentContent.user.avatarUrl}}" style="width: 100rpx; height: 100rpx; border-radius: 50%; margin: 20rpx;" data-id="{{item.commentContent.user.userId}}" catchtap="handlePersonalDetail"/>
+		<view style="border-bottom: 2rpx solid #f5f5f5; padding-top: 30rpx; height: 140rpx; width: 610rpx;">
+			<view style='display: flex; justify-content: space-between; '>
+				<view style="font-size: 28rpx; margin-left: 20rpx; display: flex;"><text class="one-lines" style="color: var(--spaColor); margin-right: 10rpx; width: 180rpx;" data-id="{{item.commentContent.user.userId}}" catchtap="handlePersonalDetail">{{item.commentContent.user.nickname}}</text> <text style='font-size: 24rpx; color: #999;'>赞了你的评论</text></view>
+				<view style="font-size: 22rpx; margin-right: 50rpx; color: #999;">{{item.data_time}}</view>
+			</view>
+			<view class="one-lines" style="font-size: 22rpx; margin-top: 10rpx; margin-left: 20rpx; width: 550rpx;"><text wx:if="{{item.commentContent.comment.beRepliedUser}}">回复<text style="color: var(--spaColor); margin-right: 10rpx;">@{{item.commentContent.comment.beRepliedUser.nickname}}</text>: </text>
+				<text>{{item.commentContent.comment.content}}</text>
+			</view>
+		</view>
+	</view>
+</view>
+
+<!-- 无通知 -->
+<view wx:if="{{comment && commentInfo == ''}}" style="width: 750rpx; height: 60rpx; line-height: 60rpx; margin-top: 80rpx; text-align: center; color: #999;">暂时还没有收到通知~</view>
+
+
+<!-- 有评论 -->
+<view style="display: flex; position: relative; width: 750rpx;" wx:for="{{noticeInfo}}" wx:key="*this" wx:if="{{notice}}">
+	<image src="{{item.noticeUser.avatarUrl}}" style="width: 100rpx; height: 100rpx; margin: 20rpx 30rpx; border-radius: 50%;" data-id="{{item.noticeUser.id}}" catchtap="handlePersonalDetail"/>
+	<view style="width: 540rpx; margin-top: 30rpx; display: flex; flex-direction: column; padding-bottom: 20rpx; border-bottom: 2rpx solid #f5f5f5;">
+		<view style="display: flex; justify-content: space-between; width: 540rpx;">
+			<view style="font-size: 26rpx; color: var(--spaColor);">{{item.noticeUser.nickname}}</view>
+			<view style="font-size: 22rpx; color: #999;">{{item.date_time}}</view>
+		</view>
+		<view style="margin-top: 20rpx; font-size: 28rpx; color: #000;">{{item.noticeContent}}</view>
+		<view class="one-lines" style="width: 510rpx; height: 50rpx; line-height: 50rpx; background-color: #f5f5f5; color: #999; font-size: 28rpx; border-radius: 10rpx; margin-top: 20rpx; text-align: left; padding-left: 10rpx;">{{item.myContent}}</view>
+	</view>
+</view>
+
+<!-- 无评论 -->
+<view wx:if="{{notice && noticeInfo == ''}}" style="width: 750rpx; height: 60rpx; line-height: 60rpx; margin-top: 80rpx; text-align: center; color: #999;">暂时还没有收到评论~</view>
+
+<!-- 有@我 -->
+<view style="display: flex; position: relative; width: 750rpx;" wx:for="{{aiteInfo}}" wx:key="*this" wx:if="{{aite}}">
+	<image src="{{item.aiteContent.comment.user.avatarUrl}}" style="width: 100rpx; height: 100rpx; margin: 20rpx 30rpx; border-radius: 50%;" data-id="{{item.aiteContent.comment.user.userId}}" catchtap="handlePersonalDetail"/>
+	<view style="width: 540rpx; margin-top: 30rpx; display: flex; flex-direction: column; padding-bottom: 20rpx; border-bottom: 2rpx solid #f5f5f5;">
+		<view style="display: flex; justify-content: space-between; width: 540rpx;">
+			<view style="font-size: 26rpx; color: #999;"> <text style="color: var(--spaColor);">{{item.aiteContent.comment.user.nickname}}</text> 评论：</view>
+			<view style="font-size: 22rpx; color: #999;">{{item.date_time}}</view>
+		</view>
+		<view style="margin-top: 20rpx; font-size: 28rpx; color: #000;"><text style="color: var(--spaColor); margin-right: 6rpx;" data-id="{{item.aiteContent.comment.user.userId}}" catchtap="handlePersonalDetail">{{item.aiteMe[0]}}</text>{{item.aiteMe[1]}}</view>
+		<view style="width: 510rpx; height: 100rpx; line-height: 100rpx; background-color: #f5f5f5; color: #999; font-size: 28rpx; border-radius: 10rpx; margin-top: 20rpx; text-align: left; padding-left: 10rpx; display: flex;" data-songId="{{item.aiteContent.resource.id}}" catchtap="handlePlaySong">
+			<image src="{{item.aiteContent.resource.album.picUrl}}" style="width: 80rpx; height: 80rpx; border-radius: 10rpx; margin: 10rpx;"/>
+			<view style="display: flex; flex-direction: column; margin-top: -14rpx; margin-left: 10rpx;">
+				<view style="font-size: 24rpx; color: #000; height: 30rpx;">{{item.aiteContent.resource.name}}</view>
+				<view style="font-size: 22rpx; color: #999; height: 30rpx; margin-top: 4rpx;">{{item.aiteContent.resource.artists[0].name}}</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+<!-- 无@我 -->
+<view wx:if="{{aite && aiteInfo == ''}}" style="width: 750rpx; height: 60rpx; line-height: 60rpx; margin-top: 80rpx; text-align: center; color: #999;">暂时还没有收到@我~</view>

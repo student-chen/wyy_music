@@ -1,0 +1,45 @@
+<view class="login">
+    <image class="icon" src="../../images/icon.png">
+    </image>
+    <view class="login_path">
+        <view class="phone" bindtap="handleLogin" data-name="phone">手机登录</view>
+        <view class="email" bindtap="handleLogin" data-name="email">邮箱登录</view>
+    </view>
+    <view class="serve">
+        <checkbox-group  bindchange="handleChoose">
+            <checkbox checked="{{checked}}" color="#ff0000" class="checkbox"></checkbox>
+        </checkbox-group>
+        <view class="serve_name">《用户协议》
+        </view>
+        <view class="serve_name">《隐私政策》
+        </view>
+        <view class="serve_name">《儿童隐私政策》
+        </view>
+    </view>
+</view>
+
+<view class="login_phone common {{currentName === 'phone' ? 'visible' : ''}}" style="{{currentName === 'phone' ? 'display: block' : 'display: none'}};">
+    <view class="login_title">手机登录</view>
+    <image class="close" src="../../images/pages/shut_down.png" bindtap="handleClose"></image>
+    <form bindsubmit="handlePhoneLogin">
+        <mew-options class="container" style="width: 670rpx; height: 260rpx; margin-top: 50rpx; margin-left: 40rpx;">
+            <input class="account" maxlength="11" type="digit" placeholder="手机号" placeholder-style="text-align: left;" bindinput="phoneAccountInput"/>
+            <view class="line-1"></view>
+            <input class="password" maxlength="16" type="password" placeholder="密码" placeholder-style="text-align: left;" bindinput="phonePasswordInput"/>
+        </mew-options>
+        <button form-type="submit" class="loginBtn">手机登录</button>
+    </form>
+</view>
+
+<view class="login_email common {{currentName === 'email' ? 'visible' : ''}}" style="{{currentName === 'email' ? 'display: block' : 'display: none'}};">
+    <view class="login_title">邮箱登录</view>
+    <image class="close" src="../../images/pages/shut_down.png" bindtap="handleClose"></image>
+    <form bindsubmit="handleEmailLogin">
+         <mew-options class="container" style="width: 670rpx; height: 260rpx; margin-top: 50rpx; margin-left: 40rpx;">
+            <input class="account" maxlength="11" type="digit" placeholder="邮箱" placeholder-style="text-align: left;" bindinput="emailAccountInput"/>
+            <view class="line-1"></view>
+            <input class="password" maxlength="16" type="password" placeholder="密码" placeholder-style="text-align: left;" bindinput="emailPasswordInput"/>
+        </mew-options>
+        <button form-type="submit" class="loginBtn">邮箱登录</button>
+    </form>
+</view>

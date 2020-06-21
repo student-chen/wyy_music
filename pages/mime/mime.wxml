@@ -1,0 +1,39 @@
+<view class="container">
+	<view  style="{{currentIndex == '0' ? 'display: flex' : 'display: none'}};">
+	    <view class="login" bindtap="handleLogin">登录</view>
+	    <view class="register" bindtap="handleRegister">注册</view>
+    </view>
+    <view class="userinfo" style="{{currentIndex == '1' ? 'display: flex' : 'display: none'}};">
+        <image class="userAvatar" src="{{userInfo.userAvatar}}"></image>
+        <view class="userinfo_name">
+            <view class="name">{{userInfo.nickName}}</view>
+            <view class="userId">用户ID: {{userInfo.userId}}</view>
+        </view>
+        <view class="getline" bindtap="handleDailySigning">{{signing}}</view>
+    </view>
+
+    <view wx:if="{{userInfo.userId}}" class="body_container">
+    	<view class="mime_list" bindtap="handleMyMessage">
+			<view class="mime_list_title">我的消息</view>
+			<image src="../../images/pages/coupons-icon.png" class="mime_list_image"/>
+		</view>
+		<view class="one_line"></view>
+		<view class="mime_list" bindtap="handleMyNotice">
+			<view class="mime_list_title">我的关注</view>
+			<image src="../../images/pages/coupons-icon.png" class="mime_list_image"/>
+		</view>
+		<view class="one_line"></view>
+		<view class="mime_list" bindtap="handleMyDetail">
+			<view class="mime_list_title">个人主页</view>
+			<image src="../../images/pages/coupons-icon.png" class="mime_list_image"/>
+		</view>
+		<view class="one_line"></view>
+		<view class="mime_list" bindtap="handleSetting">
+			<view class="mime_list_title">设置中心</view>
+			<image src="../../images/pages/coupons-icon.png" class="mime_list_image"/>
+		</view>
+    </view>
+
+    <view class="logoutBtn" wx:if="{{userInfo.userId}}" bindtap="handlelogout">退出登录</view>
+
+</view>

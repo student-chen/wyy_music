@@ -1,0 +1,13 @@
+:host {
+    background-color: #fff;
+    border-radius: 16rpx;
+    box-shadow: 0 10rpx 28rpx rgba(0, 0, 0, 0.05), 0 2rpx 3rpx rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 690rpx;
+    margin: 30rpx;
+    margin-bottom: 0;
+    position: relative;
+}
