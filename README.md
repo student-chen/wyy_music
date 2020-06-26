@@ -4,7 +4,18 @@
 # 接口地址: 
 	1、文档地址: https://binaryify.github.io/NeteaseCloudMusicApi/#/;
 	2、接口代码地址: https://github.com/Binaryify/NeteaseCloudMusicApi;
+
+# 启动后端服务:
+	## 本地后端服务启动
+	通过git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git，接口代码成功后；
+	cmd进入NeteaseCloudMusicApi文件夹中，首先输入npm install回车安装依赖；
+	然后输入node app.js 回车启动服务；
+	（值得一提的是，我这里是windows系统，同时你的3000端口已经占用，你可以通过git bash或者cmder设置未使		用过的端口开启服务，方法是：set PORT=4000 && node app.js）
+	当界面显示：server running @ http://localhost:3000表示启动成功。
 	
+	## 域名服务启动
+	具体方法可在(https://binaryify.github.io/NeteaseCloudMusicApi/#/)查看。
+
 # 文件介绍:
 	1、components 	// 整个开发过程做组件;
 	2、images 	  	// 图片;
